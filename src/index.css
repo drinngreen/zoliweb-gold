@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: black;
+  position: relative;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: #FFD700;
+  color: black;
+}
+
+.geometric-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  overflow: hidden;
+  width: 200%;
+  height: 200%;
+  transform: translate(-25%, -25%);
+}
+
+.geometric-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(45deg, rgba(255,215,0,0.03) 25%, transparent 25%) 0 0,
+    linear-gradient(135deg, rgba(255,215,0,0.03) 25%, transparent 25%) 0 0,
+    linear-gradient(45deg, transparent 75%, rgba(255,215,0,0.03) 75%) 0 0,
+    linear-gradient(135deg, transparent 75%, rgba(255,215,0,0.03) 75%) 0 0,
+    radial-gradient(circle at 25% 25%, rgba(255,215,0,0.05) 0%, transparent 45%),
+    radial-gradient(circle at 75% 75%, rgba(255,215,0,0.05) 0%, transparent 45%),
+    linear-gradient(90deg, rgba(255,215,0,0.01) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255,215,0,0.01) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px, 100px 100px, 100px 100px, 100% 100%, 100% 100%, 50px 50px, 50px 50px;
+  animation: rotate 60s linear infinite;
+}
+
+.geometric-pattern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    repeating-linear-gradient(45deg, rgba(255,215,0,0.015) 0px, rgba(255,215,0,0.015) 2px, transparent 2px, transparent 8px),
+    repeating-linear-gradient(-45deg, rgba(255,215,0,0.015) 0px, rgba(255,215,0,0.015) 2px, transparent 2px, transparent 8px);
+  animation: patternFloat 30s linear infinite;
+}
+
+.geometric-pattern::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 0% 0%, rgba(255,215,0,0.1) 0%, transparent 50%),
+    radial-gradient(circle at 100% 0%, rgba(255,215,0,0.1) 0%, transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(255,215,0,0.1) 0%, transparent 50%),
+    radial-gradient(circle at 0% 100%, rgba(255,215,0,0.1) 0%, transparent 50%);
+  background-size: 100% 100%;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg) scale(1.5);
+  }
+  100% {
+    transform: rotate(360deg) scale(1.5);
+  }
+}
+
+@keyframes patternFloat {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100px 100px;
+  }
+}
